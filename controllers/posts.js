@@ -47,10 +47,24 @@ export const deletePost = async (req, res) => {
     if(!mongoose.Types.ObjectId.isValid(id)) res.return(404).send('No Post with that id');
     // if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No Post with that id');
     
-    // await postMessage.findByIdAndRemove(id);
+    await PostMessage.findByIdAndRemove(id);
     // This above line cause error whereas in tutorial it is written 
-
+    
     console.log('DELETE');
-
+    
     res.json({ message: 'Post deleted successfully' });
 } 
+
+export const likePost = async (req, res) => {
+    const {id} = req.params;
+    
+    if(!mongoose.Types.ObjectId.isValid(id)) res.return(404).send('No Post with that id');
+    console.log('Post Matched');
+    const post = await PostMessage.findById(id);
+    const updatedPost = await PostMessage.findByIdAndUpdate(id, {likeCount: post.likeCount + 1 }, { new: true });
+    console.log('post liked +1');
+
+    res.json(updatedPost);
+    console.log('Post update!');
+    
+}
