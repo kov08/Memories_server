@@ -30,13 +30,16 @@ export const createPost =  async (req, res)=>{
 }
 
 export const updatePost = async (req, res) => {
-    const { id: _id } = req.params;
+    
+    console.log("INdeniacna: ", req.params)
+    
+    const { idTest } = req.params;
     const post = req.body;
 
     // if(!mongoose.Types.ObjectId.isValid(_id)) res.return(404).send('No Post with that id');
-    if(!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No Post with that id');
+    if(!mongoose.Types.ObjectId.isValid(idTest)) return res.status(404).send('No Post with that id');
     
-    const updatePost = await PostMessage.findByIdAndUpdate(_id, {...post, _id}, {new: true});
+    const updatePost = await PostMessage.findByIdAndUpdate(idTest, {...post, idTest}, {new: true});
     
     res.json(updatePost);
 }
@@ -74,9 +77,7 @@ export const likePost = async (req, res) => {
     }
 
     const updatedPost = await PostMessage.findByIdAndUpdate(id, post, { new: true });
-    console.log('post liked +1');
 
     res.json(updatedPost);
-    console.log('Post update!');
     
 }
