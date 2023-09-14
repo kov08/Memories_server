@@ -1,5 +1,5 @@
 import express from "express";
-import {getPostsBySearch, getPost, getPosts, createPost, updatePost, deletePost, likePost } from "../controllers/posts.js";
+import {getPostsBySearch, getPost, commentPost, getPosts, createPost, updatePost, deletePost, likePost } from "../controllers/posts.js";
 import auth from "../middleware/auth.js";
 
 
@@ -12,6 +12,7 @@ router.post('/', auth, createPost);
 router.patch('/:idTest',auth, updatePost);
 router.delete('/:id',auth, deletePost);
 router.patch('/:id/likePost',auth, likePost);
+router.post('/:id/commentPost',auth, commentPost);
 // router.get('/', getPosts);
 // router.get('/', getPosts);
 
