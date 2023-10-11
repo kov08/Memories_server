@@ -2,11 +2,14 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import dotenv from 'dotenv';
 
 import postRoutes from './routes/posts.js';
 import userRoutes from './routes/users.js';
+import apiRoutes from './routes/api.js';
 
 const appl = express();
+dotenv.config();
 
 // const app = express();
 
@@ -16,10 +19,11 @@ appl.use(cors());
 
 appl.use('/posts',postRoutes);
 appl.use('/user',userRoutes);
+appl.use('/api', apiRoutes);
 
 
 const CONNECTION_URL  = 'mongodb+srv://mydb1:mydb1234@cluster0.zhfgg5b.mongodb.net/?retryWrites=true&w=majority';
-const PORT =  process.env.PORT || 5000;
+const PORT =  process.env.PORT;
 // mongoose.set("strictQuery",true); 
 
 // mongoose.connect(CONNECTION_URL, {useNewUrlParser: true, useUnifiedTopology:true})

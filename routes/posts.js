@@ -13,6 +13,7 @@ router.patch('/:idTest',auth, updatePost);
 router.delete('/:id',auth, deletePost);
 router.patch('/:id/likePost',auth, likePost);
 router.post('/:id/commentPost',auth, commentPost);
+
 // router.get('/', getPosts);
 // router.get('/', getPosts);
 
