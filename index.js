@@ -22,7 +22,7 @@ appl.use('/user',userRoutes);
 appl.use('/api', apiRoutes);
 
 
-const CONNECTION_URL  = 'mongodb+srv://mydb1:mydb1234@cluster0.zhfgg5b.mongodb.net/?retryWrites=true&w=majority';
+const CONNECTION_URL  = process.env.LINK;
 const PORT =  process.env.PORT;
 // mongoose.set("strictQuery",true); 
 
